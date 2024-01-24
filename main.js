@@ -22,6 +22,6 @@ app.use('/', require('./routes/root'))
 //     res.send('checking body')
 // })
 
-app.listen(3500, ()=>{
-    console.log(`listening at port ${process.env.PORT}`)
+app.listen(process.env.PORT, ()=>{
+    console.log(`listening at port ${process.env.PORT} `)
 })

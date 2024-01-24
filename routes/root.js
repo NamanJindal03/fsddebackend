@@ -39,4 +39,43 @@ router.get('/', (req, res) => {
     res.json({name: 'naman'})
 })
 
+router.get('/blogs/:blogId/:nextId/:testId', (req, res) => {
+    //over here I want to 
+    console.log(req.params);
+    res.send('sample')
+})
+
+router.get('/blogs', (req, res) => {
+    console.log(req.query);
+    res.send('understanding query')
+})
+
+// router.get('/pokemon', (req, res) => {
+//     res.send('random pokemon sent')
+// })
+
+// router.post('/pokemon', (req, res)=>{
+//     res.send('random pokemon succesfully recevied')
+// })
+
+// router.delete('/pokemon/:id', (req, res) => {
+//     res.send(`pokemon with id ${req.params.id} succesfully deleted`)
+// })
+
+router.route('/pokemon')
+    .get((req, res) => {
+        res.send('random pokemon sent')
+    })
+    .post((req, res)=>{
+        res.send('random pokemon succesfully recevied')
+    })
+
+router.route('/pokemon/:id')    
+    .delete((req, res) => {
+        res.send(`pokemon with id ${req.params.id} succesfully deleted`)
+    })
+    .put((req, res)=>{
+        res.send(`pokemon with id ${req.params.id} succesfully updated`)
+    })
+
 module.exports = router

@@ -4,6 +4,22 @@ const app = express();
 const fs = require('fs');
 const path = require('path')
 const axios = require('axios');
+const cors = require('cors');
+
+const whiteListServers = ["http://localhost:3000"];
+const corsOptions = {
+    origin: (origin, callback) => {
+        console.log(origin);
+        if(whiteListServers.indexOf(origin) != -1 || !origin){
+            callback(null, true)
+        }
+        else{
+            callback(new Error("you are not allowed to consume my resources."))
+        }
+    }
+}
+
+app.use(cors(corsOptions));
 
 
 app.use(express.json());
@@ -49,20 +65,20 @@ app.post('/compute', (req, res) => {
 })
 
 app.get('/testcors', (req, res)=>{
-    console.log('request coming')
-    axios.get('http://localhost:3500')
-    .then(()=>{
-        console.log('called');
-        res.send(
-            "getting handled"
-        )
-    })
-    .catch((err)=>{
-        console.log('----------------------------->')
-        console.log('err', err)
-    })
+    // console.log('request coming')
+    // axios.get('http://localhost:3500', { withCredentials: true })
+    // .then((data)=>{
+    //     console.log('called');
+    //     res.json(
+    //     {"something": "something"}
+    //     )
+    // })
+    // .catch((err)=>{
+    //     console.log('----------------------------->')
+    //     console.log('err', err)
+    // })
+    res.json({"something": "something2"})
 })
-
 
 app.listen(3010, ()=>{
     console.log(`listening at port 3010`)
