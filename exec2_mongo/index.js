@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 //additional step 
 require('./mongotest2')();
+const routes = require('./route/root')
 const User = require('./model/User');
 
-async function createUser(){
+//controller using the model
+async function createUser(req, res){
     try{
         const user1 = await User.create({
             name: 'kartik',
@@ -53,9 +55,21 @@ async function updateUser(){
         console.log(err);
     }
 }
-updateUser()
+// updateUser()
+
+//post /user/create
+// app.use('/', centralRoutesFiles)
+
+// app.post('/user/create', <controller></controller> userController)
+
+//user controller -> require -> model User-> 
+//function create
+
+//
 
 
+
+///app.listen
 
 
 
@@ -63,14 +77,14 @@ updateUser()
 // require('dotenv').config()
 // const fs = require('fs');
 // const path = require('path');
-// app.use(express.json());
+app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
 // app.use(express.text({type: 'text/*'}));
 // app.use('/', require('./routes/root'))
 
+app.use('/',routes )
 
 
-
-// app.listen(3200, ()=>{
-//     console.log(`listening at port 3200 `)
-// })
+app.listen(3200, ()=>{
+    console.log(`listening at port 3200 `)
+})
