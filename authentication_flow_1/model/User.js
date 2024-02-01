@@ -5,16 +5,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    age: {
-        type: Number,
-        // min: 10,
-        // max: 15,
-        validate: {
-            validator: numb => numb > 120,
-            message: 'you failed'
-        }
+    email: {
+        type: String,
+        required: true
     },
-    gender: String,
+    password: {
+        type: String, 
+        required: true
+    }
 })
 
 //the above part is the end to schema cretion -> 
