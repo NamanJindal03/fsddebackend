@@ -16,6 +16,7 @@ const EventEmitter = require('events');
 class Logger extends EventEmitter{
     log(msg){
         this.emit('log', msg )
+        this.emit('saveInFile', msg)
     }
     error(msg){
         this.emit('error', msg )
